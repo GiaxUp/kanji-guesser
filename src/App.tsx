@@ -1,10 +1,10 @@
 import TopNavbar from "./components/TopNavbar";
-import "./App.css";
 import Home from "./pages/Home";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Learn from "./pages/Learn";
 import Review from "./pages/Review";
 import News from "./pages/News";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./style/App.css";
 
 function App() {
   return (
