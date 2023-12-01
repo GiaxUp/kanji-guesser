@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// This fetch is used to save 20 kanji that
+// we will use later for another fetch to get proper data
 const options = {
   method: "GET",
   url: "https://kanjialive-api.p.rapidapi.com/api/public/search/advanced/",

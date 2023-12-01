@@ -7,7 +7,7 @@ const Home = () => {
     <Container>
       <Row className="mt-5">
         <Col>
-          <h2>Learn Japanese Kanji's with this project!</h2>
+          <h2>Learn 20 Japanese Kanji with this project!</h2>
           <h6>
             Learning can be challenging, and tackling a language like Japanese adds an extra layer
             of difficulty to the journey!
