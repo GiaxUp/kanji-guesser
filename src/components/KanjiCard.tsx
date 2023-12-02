@@ -128,15 +128,14 @@ const KanjiCard = () => {
           style={{ width: "300px", height: "350px" }}
           className="shadow mx-auto"
           onClick={handleFlip}>
-          <Card.Header className="h6">
-            Try to guess this! {currentKanji.kanji.stroke} strokes
-          </Card.Header>
+          <Card.Header className="h6">Try to guess this!</Card.Header>
           <Card.Body>
             <Container>
               <Row className="d-flex flex-column justify-content-center align-items-center">
                 <Col>
-                  <h2 className="display-1 text-center">{currentKanji.kanji.character}</h2>
-                  <h4 className="text-center">Radical: {currentKanji.radical.character}</h4>
+                  <h1 className="display-1 text-center">{currentKanji.kanji.character}</h1>
+                  <h4 className="text-center mt-4">Radical {currentKanji.radical.character}</h4>
+                  <h6 className="text-center mt-4">{currentKanji.kanji.stroke} strokes</h6>
                 </Col>
               </Row>
             </Container>
@@ -165,7 +164,7 @@ const KanjiCard = () => {
         </Card>
       </ReactCardFlip>
       <Button className="mt-3 mx-1" variant="danger">
-        What is this?
+        Review this later
       </Button>
       <Button onClick={handleNextKanji} className="mt-3 mx-1" variant="success">
         Next card!
