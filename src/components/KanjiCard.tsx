@@ -142,21 +142,29 @@ const KanjiCard = () => {
 
   return (
     <Container className="mt-5 text-center">
-      <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
+      <ReactCardFlip isFlipped={isFlipped && currentKanjiIndex !== 0} flipDirection="vertical">
         {/* Front Card */}
         <Card
           key={currentKanji.kanji.character}
           style={{ width: "300px", height: "350px" }}
-          className="shadow mx-auto"
-          onClick={handleFlip}>
-          <Card.Header className="h6">Try to guess this!</Card.Header>
+          className={`shadow mx-auto card ${currentKanjiIndex === 0 ? "disabled" : ""}`}
+          onClick={() => (currentKanjiIndex !== 0 ? handleFlip() : null)}>
+          <Card.Header className="h6">
+            {currentKanjiIndex === 0 ? "Attention!" : "Try to guess this!"}
+          </Card.Header>
           <Card.Body>
             <Container>
               <Row className="d-flex flex-column justify-content-center align-items-center">
                 <Col>
-                  <h1 className="display-1 text-center">{currentKanji.kanji.character}</h1>
-                  <h4 className="text-center mt-4">Radical {currentKanji.radical.character}</h4>
-                  <h6 className="text-center mt-4">{currentKanji.kanji.stroke} strokes</h6>
+                  {currentKanjiIndex === 0 ? (
+                    <h1 className="text-center">Read the rules above before you start guessing!</h1>
+                  ) : (
+                    <>
+                      <h1 className="display-1 text-center">{currentKanji.kanji.character}</h1>
+                      <h4 className="text-center mt-4">Radical {currentKanji.radical.character}</h4>
+                      <h6 className="text-center mt-4">{currentKanji.kanji.stroke} strokes</h6>
+                    </>
+                  )}
                 </Col>
               </Row>
             </Container>
@@ -166,7 +174,7 @@ const KanjiCard = () => {
         <Card
           key={currentKanji.kanji.character}
           style={{ width: "300px", height: "350px" }}
-          onClick={handleFlip}
+          onClick={() => handleFlip()}
           className="mx-auto">
           <Card.Header className="h6">English translation and examples</Card.Header>
           <Card.Body>
@@ -184,12 +192,20 @@ const KanjiCard = () => {
           </Card.Body>
         </Card>
       </ReactCardFlip>
-      <Button onClick={handleReviewLater} className="mt-3 mx-1" variant="danger">
-        Review this later
-      </Button>
-      <Button onClick={handleNextKanji} className="mt-3 mx-1" variant="success">
-        Next card!
-      </Button>
+      {currentKanjiIndex === 0 ? (
+        <Button onClick={handleNextKanji} className="mt-3 mx-1" variant="success">
+          I'm ready to start!
+        </Button>
+      ) : (
+        <>
+          <Button onClick={handleReviewLater} className="mt-3 mx-1" variant="danger">
+            Review this later
+          </Button>
+          <Button onClick={handleNextKanji} className="mt-3 mx-1" variant="success">
+            Next card!
+          </Button>
+        </>
+      )}
     </Container>
   );
 };
