@@ -51,15 +51,28 @@ interface KanjiAdditionalInfo {
 const KanjiCard = () => {
   const [fetchedKanji, setFetchedKanji] = useState<KanjiObject[]>([]);
   const [additionalInfo, setAdditionalInfo] = useState<KanjiAdditionalInfo | null>(null);
+  const [savedInfo, setSavedInfo] = useState<KanjiAdditionalInfo[]>([]);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [currentKanjiIndex, setCurrentKanjiIndex] = useState<number>(0);
 
+  useEffect(() => {
+    const savedInfoFromLocalStorage = localStorage.getItem("savedInfo");
+    if (savedInfoFromLocalStorage) {
+      setSavedInfo(JSON.parse(savedInfoFromLocalStorage));
+    }
+  }, []); // Load saved info from localStorage when the component mounts
+
+  useEffect(() => {
+    localStorage.setItem("savedInfo", JSON.stringify(savedInfo));
+  }, [savedInfo]); // Save updated info to localStorage whenever it changes
+
+  // First fetch to get the kanji needed for the second fetch
   useEffect(() => {
     const fetchData = async () => {
       const options = {
         method: "GET",
         url: "https://kanjialive-api.p.rapidapi.com/api/public/search/advanced/",
-        params: { list: "ap:c3" }, // Can be changed to set another set of kanjis. Ex: { grade: '2' } (1-5)
+        params: { list: "ap:c3" }, // Can be changed to set another set of kanji. Ex: { grade: '2' } (1-5)
         headers: {
           "X-RapidAPI-Key": import.meta.env.VITE_APP_KEY,
           "X-RapidAPI-Host": import.meta.env.VITE_APP_SITE,
@@ -68,7 +81,7 @@ const KanjiCard = () => {
 
       try {
         const response: AxiosResponse<KanjiObject[]> = await axios.request(options);
-        setFetchedKanji(response.data); // Array of the 20 objects, with character and radical
+        setFetchedKanji(response.data); // Array of the 20 objects with the needed kanji inside
       } catch (error) {
         console.error(error);
       }
@@ -86,7 +99,7 @@ const KanjiCard = () => {
     setCurrentKanjiIndex((prevIndex) => (prevIndex + 1) % fetchedKanji.length);
     setIsFlipped(false); // Reset flip state when moving to the next kanji
 
-    // Fetch additional data for the new kanji
+    // Fetch additional data for the selected kanji
     const currentCharacter = fetchedKanji[currentKanjiIndex].kanji.character;
 
     const options = {
@@ -100,13 +113,21 @@ const KanjiCard = () => {
 
     try {
       const response = await axios.request(options);
-      setAdditionalInfo(response.data); // Set the additional info for the current kanji
-      console.log(response.data);
+      const newAdditionalInfo: KanjiAdditionalInfo = response.data;
+      setAdditionalInfo(newAdditionalInfo);
     } catch (error) {
       console.error(error);
     }
   };
 
+  const handleReviewLater = () => {
+    if (additionalInfo) {
+      // Save the current visualized kanji info to the array in state
+      setSavedInfo((prevSavedInfo) => [...prevSavedInfo, additionalInfo]);
+    }
+  };
+
+  // Loader
   if (fetchedKanji.length === 0) {
     return (
       <Container className="mt-5 text-center d-flex justify-content-center align-items-center">
@@ -163,7 +184,7 @@ const KanjiCard = () => {
           </Card.Body>
         </Card>
       </ReactCardFlip>
-      <Button className="mt-3 mx-1" variant="danger">
+      <Button onClick={handleReviewLater} className="mt-3 mx-1" variant="danger">
         Review this later
       </Button>
       <Button onClick={handleNextKanji} className="mt-3 mx-1" variant="success">
