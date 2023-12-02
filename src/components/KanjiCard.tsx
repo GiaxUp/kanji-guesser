@@ -20,8 +20,9 @@ interface KanjiObject {
 interface KanjiAdditionalInfo {
   kanji: {
     character: string;
-    stroke: {
+    strokes: {
       count: number;
+      images: string[];
     };
     meaning: {
       english: string;
@@ -127,7 +128,9 @@ const KanjiCard = () => {
           style={{ width: "300px", height: "350px" }}
           className="shadow mx-auto"
           onClick={handleFlip}>
-          <Card.Header className="h6">Number of strokes: {currentKanji.kanji.stroke}</Card.Header>
+          <Card.Header className="h6">
+            Try to guess this! {currentKanji.kanji.stroke} strokes
+          </Card.Header>
           <Card.Body>
             <Container>
               <Row className="d-flex flex-column justify-content-center align-items-center">
@@ -145,7 +148,7 @@ const KanjiCard = () => {
           style={{ width: "300px", height: "350px" }}
           onClick={handleFlip}
           className="mx-auto">
-          <Card.Header className="h6">Examples and english translation</Card.Header>
+          <Card.Header className="h6">English translation and examples</Card.Header>
           <Card.Body>
             <Row className="d-flex flex-column justify-content-center align-content-center">
               <Col>
