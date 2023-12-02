@@ -3,7 +3,8 @@ import axios, { AxiosResponse } from "axios";
 import { Card, Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import ReactCardFlip from "react-card-flip";
 
-// Define an interface for the kanji objects
+// Starting kanji informations
+// recovered from the first fetch
 interface KanjiObject {
   kanji: {
     character: string;
@@ -14,9 +15,36 @@ interface KanjiObject {
   };
 }
 
-// Add additional informations later
+// Detailed informations recovered
+// from the second fetch
 interface KanjiAdditionalInfo {
-  meaning: string;
+  kanji: {
+    character: string;
+    stroke: {
+      count: number;
+    };
+    meaning: {
+      english: string;
+    };
+    video: {
+      mp4: string;
+    };
+    kunyomi: {
+      hiragana: string;
+    };
+    onyomi: {
+      katakana: string;
+    };
+  };
+  examples: {
+    meaning: {
+      english: string;
+    };
+    japanese: string;
+    audio: {
+      mp3: string;
+    };
+  }[];
 }
 
 const KanjiCard = () => {
@@ -30,7 +58,7 @@ const KanjiCard = () => {
       const options = {
         method: "GET",
         url: "https://kanjialive-api.p.rapidapi.com/api/public/search/advanced/",
-        params: { list: "ap:c3" }, // This can be changed to set another set of kanjis -> grade=2 (1-5)
+        params: { list: "ap:c3" }, // Can be changed to set another set of kanjis. Ex: { grade: '2' } (1-5)
         headers: {
           "X-RapidAPI-Key": import.meta.env.VITE_APP_KEY,
           "X-RapidAPI-Host": import.meta.env.VITE_APP_SITE,
@@ -39,8 +67,7 @@ const KanjiCard = () => {
 
       try {
         const response: AxiosResponse<KanjiObject[]> = await axios.request(options);
-        setFetchedKanji(response.data); //This is the array of the 20 objects
-        // console.log(response.data);
+        setFetchedKanji(response.data); // Array of the 20 objects, with character and radical
       } catch (error) {
         console.error(error);
       }
@@ -73,6 +100,7 @@ const KanjiCard = () => {
     try {
       const response = await axios.request(options);
       setAdditionalInfo(response.data); // Set the additional info for the current kanji
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -96,17 +124,16 @@ const KanjiCard = () => {
         {/* Front Card */}
         <Card
           key={currentKanji.kanji.character}
-          style={{ width: "250px", height: "300px" }}
-          className="shadow mx-auto">
+          style={{ width: "300px", height: "350px" }}
+          className="shadow mx-auto"
+          onClick={handleFlip}>
           <Card.Header className="h6">Number of strokes: {currentKanji.kanji.stroke}</Card.Header>
           <Card.Body>
             <Container>
-              <Row
-                className="d-flex flex-column justify-content-center align-items-center"
-                onClick={handleFlip}>
+              <Row className="d-flex flex-column justify-content-center align-items-center">
                 <Col>
                   <h2 className="display-1 text-center">{currentKanji.kanji.character}</h2>
-                  <h5 className="text-center">Radical: {currentKanji.radical.character}</h5>
+                  <h4 className="text-center">Radical: {currentKanji.radical.character}</h4>
                 </Col>
               </Row>
             </Container>
@@ -115,14 +142,20 @@ const KanjiCard = () => {
         {/* Back Card */}
         <Card
           key={currentKanji.kanji.character}
-          style={{ width: "250px", height: "300px" }}
+          style={{ width: "300px", height: "350px" }}
           onClick={handleFlip}
           className="mx-auto">
-          <Card.Header className="h6">Translation</Card.Header>
+          <Card.Header className="h6">Examples and english translation</Card.Header>
           <Card.Body>
             <Row className="d-flex flex-column justify-content-center align-content-center">
               <Col>
-                <h4 className="text-center">{additionalInfo?.meaning}</h4>
+                <h4 className="text-center">{additionalInfo?.kanji.meaning.english}</h4>
+                {additionalInfo?.examples.slice(0, 3).map((example, index) => (
+                  <div key={index}>
+                    <p className="text-center">Japanese: {example.japanese}</p>
+                    <p className="text-center">English: {example.meaning.english}</p>
+                  </div>
+                ))}
               </Col>
             </Row>
           </Card.Body>
