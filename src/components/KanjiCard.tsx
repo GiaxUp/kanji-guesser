@@ -2,51 +2,7 @@ import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 import { Card, Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import ReactCardFlip from "react-card-flip";
-
-// Starting kanji informations
-// recovered from the first fetch
-interface KanjiObject {
-  kanji: {
-    character: string;
-    stroke: number;
-  };
-  radical: {
-    character: string;
-  };
-}
-
-// Detailed informations recovered
-// from the second fetch
-interface KanjiAdditionalInfo {
-  kanji: {
-    character: string;
-    strokes: {
-      count: number;
-      images: string[];
-    };
-    meaning: {
-      english: string;
-    };
-    video: {
-      mp4: string;
-    };
-    kunyomi: {
-      hiragana: string;
-    };
-    onyomi: {
-      katakana: string;
-    };
-  };
-  examples: {
-    meaning: {
-      english: string;
-    };
-    japanese: string;
-    audio: {
-      mp3: string;
-    };
-  }[];
-}
+import { KanjiObject, KanjiAdditionalInfo } from "../interfaces/types";
 
 const KanjiCard = () => {
   const [fetchedKanji, setFetchedKanji] = useState<KanjiObject[]>([]);
@@ -72,7 +28,7 @@ const KanjiCard = () => {
       const options = {
         method: "GET",
         url: "https://kanjialive-api.p.rapidapi.com/api/public/search/advanced/",
-        params: { list: "ap:c3" }, // Can be changed to set another set of kanji. Ex: { grade: '2' } (1-5)
+        params: { grade: "2" }, // Can be changed to set another grade of difficulty (1-5)
         headers: {
           "X-RapidAPI-Key": import.meta.env.VITE_APP_KEY,
           "X-RapidAPI-Host": import.meta.env.VITE_APP_SITE,
@@ -96,11 +52,12 @@ const KanjiCard = () => {
 
   const handleNextKanji = async () => {
     // Move to the next kanji with the button
-    setCurrentKanjiIndex((prevIndex) => (prevIndex + 1) % fetchedKanji.length);
+    const nextIndex = (currentKanjiIndex + 1) % fetchedKanji.length;
+    setCurrentKanjiIndex(nextIndex);
     setIsFlipped(false); // Reset flip state when moving to the next kanji
 
     // Fetch additional data for the selected kanji
-    const currentCharacter = fetchedKanji[currentKanjiIndex].kanji.character;
+    const currentCharacter = fetchedKanji[nextIndex].kanji.character;
 
     const options = {
       method: "GET",
@@ -163,6 +120,9 @@ const KanjiCard = () => {
                       <h1 className="display-1 text-center">{currentKanji.kanji.character}</h1>
                       <h4 className="text-center mt-4">Radical {currentKanji.radical.character}</h4>
                       <h6 className="text-center mt-4">{currentKanji.kanji.stroke} strokes</h6>
+                      <h6 className="text-center mt-4">
+                        If you think you know the answer, click the card to reveal the translations.
+                      </h6>
                     </>
                   )}
                 </Col>
@@ -176,7 +136,7 @@ const KanjiCard = () => {
           style={{ width: "300px", height: "350px" }}
           onClick={() => handleFlip()}
           className="mx-auto">
-          <Card.Header className="h6">English translation and examples</Card.Header>
+          <Card.Header className="h6">Translations and examples</Card.Header>
           <Card.Body>
             <Row className="d-flex flex-column justify-content-center align-content-center">
               <Col>

@@ -1,5 +1,11 @@
+import ReviewCards from "../components/ReviewCards";
+
 const Review = () => {
-  return <div>Review</div>;
+  return (
+    <div>
+      <ReviewCards />
+    </div>
+  );
 };
 
 export default Review;
