@@ -5,7 +5,7 @@ import "../style/App.css";
 const Home = () => {
   return (
     <Container>
-      <Image src="https://i.ibb.co/zJcdqK7/kanjiguesser.jpg" className="mt-3" />
+      <Image src="https://i.ibb.co/zJcdqK7/kanjiguesser.jpg" className="mt-3 img-fluid" />
       <Row className="mt-3">
         <Col>
           <h2>Discover more than 150 Japanese kanji meanings with this web app!</h2>
