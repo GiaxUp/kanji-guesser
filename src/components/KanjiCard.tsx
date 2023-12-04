@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
-import { Card, Container, Row, Col, Button, Spinner } from "react-bootstrap";
+import { Card, Container, Row, Col, Button, Spinner, Alert } from "react-bootstrap";
 import ReactCardFlip from "react-card-flip";
 import { KanjiObject, KanjiAdditionalInfo } from "../interfaces/types";
 import RulesAccordion from "./RulesAccordion";
@@ -11,6 +11,7 @@ const KanjiCard = () => {
   const [savedInfo, setSavedInfo] = useState<KanjiAdditionalInfo[]>([]);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [currentKanjiIndex, setCurrentKanjiIndex] = useState<number>(0);
+  const [showReviewLaterAlert, setShowReviewLaterAlert] = useState(false);
 
   useEffect(() => {
     const savedInfoFromLocalStorage = localStorage.getItem("savedInfo");
@@ -82,7 +83,15 @@ const KanjiCard = () => {
     if (additionalInfo) {
       // Save the current visualized kanji info to the array in state
       setSavedInfo((prevSavedInfo) => [...prevSavedInfo, additionalInfo]);
+      setShowReviewLaterAlert(true); // Shows the success alert
+      setTimeout(() => {
+        setShowReviewLaterAlert(false);
+      }, 1000);
     }
+  };
+
+  const handleAlertClose = () => {
+    setShowReviewLaterAlert(false); // Close the alert
   };
 
   // Loader
@@ -165,6 +174,13 @@ const KanjiCard = () => {
           <Button onClick={handleNextKanji} className="mt-3 mx-1" variant="success">
             Next card!
           </Button>
+          <Alert
+            show={showReviewLaterAlert}
+            variant="success"
+            onClose={handleAlertClose}
+            className="mt-2">
+            {`${currentKanji.kanji.character} has been added to the review section!`}
+          </Alert>
         </>
       )}
       <RulesAccordion />

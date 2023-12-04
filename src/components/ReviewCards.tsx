@@ -9,9 +9,10 @@ const ReviewCard = () => {
   // non-null assertion operator because I'm sure
   // this can never be null
   const savedInfo: Kanji[] = JSON.parse(localStorage.getItem("savedInfo")!) || [];
+  const savedCardCount = savedInfo.length;
 
   // Display this when there's no saved kanji to review
-  if (savedInfo.length === 0) {
+  if (savedCardCount === 0) {
     return (
       <h4 className="text-center mt-5">
         Seems like there's nothing here, go to the{" "}

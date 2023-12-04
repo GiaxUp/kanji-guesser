@@ -10,8 +10,8 @@ const RulesAccordion = () => {
           Welcome to Kanji Guesser! More than 150 kanji cards will be loaded: you can try to guess
           the english meaning by clicking on the card that will flip and reveal the translations and
           some usage examples. Or you can decide, if you are insecure about something, to save and
-          review the kanji later with more detailed informations. <br /> To start a learning
-          session, click the green button.
+          review the kanji later with more detailed informations. <br />{" "}
+          <b>To start a learning session, click the green button.</b>
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="1" className="mt-3">
