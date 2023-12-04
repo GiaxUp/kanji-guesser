@@ -1,23 +1,24 @@
 import { Link } from "react-router-dom";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import { Button, Container, Row, Col, Image } from "react-bootstrap";
 import "../style/App.css";
 
 const Home = () => {
   return (
     <Container>
-      <Row className="mt-5">
+      <Image src="https://i.ibb.co/zJcdqK7/kanjiguesser.jpg" className="mt-3" />
+      <Row className="mt-3">
         <Col>
-          <h2>Learn 20 Japanese Kanji with this project!</h2>
+          <h2>Discover more than 150 Japanese kanji meanings with this web app!</h2>
           <h6>
-            Learning can be challenging, and tackling a language like Japanese adds an extra layer
-            of difficulty to the journey!
+            Learning japanese can be challenging. <br />
+            That's why I decided to create this web app to help you :)
           </h6>
         </Col>
       </Row>
       <Row className="mt-3">
         <Col>
           <Link to="/learn">
-            <Button variant="primary">Start learning!</Button>
+            <Button variant="primary">Start guessing!</Button>
           </Link>
         </Col>
       </Row>

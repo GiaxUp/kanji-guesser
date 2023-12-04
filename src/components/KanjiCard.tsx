@@ -3,6 +3,7 @@ import axios, { AxiosResponse } from "axios";
 import { Card, Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import ReactCardFlip from "react-card-flip";
 import { KanjiObject, KanjiAdditionalInfo } from "../interfaces/types";
+import RulesAccordion from "./RulesAccordion";
 
 const KanjiCard = () => {
   const [fetchedKanji, setFetchedKanji] = useState<KanjiObject[]>([]);
@@ -37,7 +38,7 @@ const KanjiCard = () => {
 
       try {
         const response: AxiosResponse<KanjiObject[]> = await axios.request(options);
-        setFetchedKanji(response.data); // Array of the 20 objects with the needed kanji inside
+        setFetchedKanji(response.data); // Array of the 160 objects with the needed kanji inside
       } catch (error) {
         console.error(error);
       }
@@ -114,7 +115,7 @@ const KanjiCard = () => {
               <Row className="d-flex flex-column justify-content-center align-items-center">
                 <Col>
                   {currentKanjiIndex === 0 ? (
-                    <h1 className="text-center">Read the rules above before you start guessing!</h1>
+                    <h1 className="text-center">Read the rules below before you start guessing!</h1>
                   ) : (
                     <>
                       <h1 className="display-1 text-center">{currentKanji.kanji.character}</h1>
@@ -166,6 +167,7 @@ const KanjiCard = () => {
           </Button>
         </>
       )}
+      <RulesAccordion />
     </Container>
   );
 };
