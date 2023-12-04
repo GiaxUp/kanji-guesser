@@ -2,7 +2,7 @@ import TopNavbar from "./components/TopNavbar";
 import Home from "./pages/Home";
 import Learn from "./pages/Learn";
 import Review from "./pages/Review";
-import News from "./pages/News";
+import History from "./pages/History";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./style/App.css";
 
@@ -15,7 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/learn" element={<Learn />} />
           <Route path="/review" element={<Review />} />
-          <Route path="/news" element={<News />} />
+          <Route path="/history" element={<History />} />
         </Routes>
       </Router>
     </>
