@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from "axios";
 import { Card, Container, Row, Col, Button, Spinner, Alert } from "react-bootstrap";
 import ReactCardFlip from "react-card-flip";
 import { KanjiObject, KanjiAdditionalInfo } from "../interfaces/types";
-import RulesAccordion from "./RulesAccordion";
+import Rules from "./Rules";
 
 const KanjiCard = () => {
   const [fetchedKanji, setFetchedKanji] = useState<KanjiObject[]>([]);
@@ -124,15 +124,15 @@ const KanjiCard = () => {
               <Row className="d-flex flex-column justify-content-center align-items-center">
                 <Col>
                   {currentKanjiIndex === 0 ? (
-                    <h1 className="text-center">Read the rules below before you start guessing!</h1>
+                    <p className="text-center">Read the rules below before you start guessing!</p>
                   ) : (
                     <>
                       <h1 className="display-1 text-center">{currentKanji.kanji.character}</h1>
-                      <h4 className="text-center mt-4">Radical {currentKanji.radical.character}</h4>
-                      <h6 className="text-center mt-4">{currentKanji.kanji.stroke} strokes</h6>
-                      <h6 className="text-center mt-4">
+                      <p className="text-center mt-4">Radical {currentKanji.radical.character}</p>
+                      <p className="text-center mt-4">{currentKanji.kanji.stroke} strokes</p>
+                      <p className="text-center mt-4">
                         If you think you know the answer, click the card to reveal the translations.
-                      </h6>
+                      </p>
                     </>
                   )}
                 </Col>
@@ -183,7 +183,7 @@ const KanjiCard = () => {
           </Alert>
         </>
       )}
-      <RulesAccordion />
+      <Rules />
     </Container>
   );
 };

@@ -1,7 +1,7 @@
 import { Accordion } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const RulesAccordion = () => {
+const Rules = () => {
   return (
     <Accordion defaultActiveKey={["0", "1"]} alwaysOpen>
       <Accordion.Item eventKey="0" className="mt-3">
@@ -30,4 +30,4 @@ const RulesAccordion = () => {
   );
 };
 
-export default RulesAccordion;
+export default Rules;

@@ -90,3 +90,8 @@ export interface Radical {
   };
   meaning: KanjiMeaning;
 }
+
+export interface Comment {
+  id: number;
+  text: string;
+}

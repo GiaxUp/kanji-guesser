@@ -9,10 +9,10 @@ const Home = () => {
       <Row className="mt-3">
         <Col>
           <h2>Discover more than 150 Japanese kanji meanings with this web app!</h2>
-          <h6>
+          <p>
             Learning japanese can be challenging. <br />
             That's why I decided to create this web app to help you :)
-          </h6>
+          </p>
         </Col>
       </Row>
       <Row className="mt-3">
