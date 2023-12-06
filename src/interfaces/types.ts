@@ -31,7 +31,8 @@ export interface KanjiAdditionalInfo {
 }
 
 // Informations needed to render the
-// components in the Review section
+// components in the Review section,
+// saved and cleared for readability
 
 // Main interface
 export interface Kanji {

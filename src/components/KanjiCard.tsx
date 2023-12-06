@@ -3,7 +3,6 @@ import axios, { AxiosResponse } from "axios";
 import { Card, Container, Row, Col, Button, Spinner, Alert } from "react-bootstrap";
 import ReactCardFlip from "react-card-flip";
 import { KanjiObject, KanjiAdditionalInfo } from "../interfaces/types";
-import Rules from "./Rules";
 
 const KanjiCard = () => {
   const [fetchedKanji, setFetchedKanji] = useState<KanjiObject[]>([]);
@@ -183,7 +182,6 @@ const KanjiCard = () => {
           </Alert>
         </>
       )}
-      <Rules />
     </Container>
   );
 };

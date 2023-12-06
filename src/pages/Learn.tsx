@@ -1,7 +1,13 @@
 import KanjiCard from "../components/KanjiCard";
+import Rules from "../components/Rules";
 
 const Learn = () => {
-  return <KanjiCard />;
+  return (
+    <>
+      <KanjiCard />
+      <Rules />
+    </>
+  );
 };
 
 export default Learn;
