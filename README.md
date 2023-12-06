@@ -1,4 +1,4 @@
-# Kanji Guesser
+# Kanji Guesser v1.0
 ###  (Axios, Typescript, React Bootstrap, JSON Server)
 
 ## Features:
