@@ -1,5 +1,6 @@
 import { Container, Row, Col, Image } from "react-bootstrap";
 import Comments from "../components/Comments";
+import "../style/App.css";
 
 const History = () => {
   return (
@@ -11,7 +12,7 @@ const History = () => {
             Hi! I wanted to give you some more information about kanji as I find their history very
             fascinating! <b>At the end of the curiosities there is also a comments section</b> where
             you can leave me a message with some feedback or what you would like to see implemented
-            in the future in this web app... Or just to leave a generic comment!
+            in the future in this web app... Or just to leave a generic anonymus comment!
           </p>
         </Col>
       </Row>
@@ -67,12 +68,14 @@ const History = () => {
       </Row>
       <Row>
         <Col>
-          <h5>3. Learn additional readings through vocabulary</h5>
+          <h5>
+            3. Learn additional readings through vocabulary (.. or you can just use this web app :D)
+          </h5>
           <p>
             Master other kanji readings by studying vocabulary. This method avoids memory
             interference and ensures that readings are associated with specific words. Learning
             useful vocabulary naturally exposes you to the next most common kanji readings, allowing
-            efficient progress in kanji comprehension... <b>Or you can just use this web app :D</b>
+            efficient progress in kanji comprehension.
           </p>
         </Col>
       </Row>
