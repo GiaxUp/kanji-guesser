@@ -1,5 +1,5 @@
 # Kanji Guesser v1.0
-###  (Axios, Typescript, React Bootstrap, JSON Server)
+###  (Axios, Typescript, React Bootstrap, JSON Server
 
 ## Features:
 - Discover more than 150 kanji meanings
