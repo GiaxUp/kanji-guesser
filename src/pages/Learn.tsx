@@ -1,10 +1,10 @@
-import KanjiCard from "../components/KanjiCard";
+import KanjiCards from "../components/KanjiCards";
 import Rules from "../components/Rules";
 
 const Learn = () => {
   return (
     <>
-      <KanjiCard />
+      <KanjiCards />
       <Rules />
     </>
   );
