@@ -41,7 +41,7 @@ export interface Kanji {
   grade: string;
   kunyomi_ja: string;
   onyomi_ja: string;
-  radical?: Radical; // Some kanji doesn't have a radical, so let's make this optional
+  radical?: Radical; // Some kanji doesn't have a radical, so I made this optional
   _id: string;
 }
 
