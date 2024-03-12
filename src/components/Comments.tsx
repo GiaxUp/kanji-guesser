@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import { Form, Button, ListGroup } from "react-bootstrap";
 import { Comment } from "../interfaces/types";
+import axios from "axios";
 
 const Comments = () => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_DB}/comments`)
-      .then((response) => response.json())
-      .then((data) => setComments(data));
+    axios
+      .get(`${import.meta.env.VITE_DB}/comments`)
+      .then((response) => setComments(response.data))
+      .catch((error) => console.error("Error fetching comments:", error));
   }, []);
 
   const handleCommentSubmit = () => {
@@ -19,18 +21,17 @@ const Comments = () => {
         text: newComment,
       };
 
-      fetch(`${import.meta.env.VITE_DB}/comments`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newCommentObj),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setComments([...comments, data]);
+      axios
+        .post(`${import.meta.env.VITE_DB}/comments`, newCommentObj, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          setComments([...comments, response.data]);
           setNewComment("");
-        });
+        })
+        .catch((error) => console.error("Error posting comment:", error));
     }
   };
 

@@ -96,3 +96,9 @@ export interface Comment {
   id: number;
   text: string;
 }
+
+export interface HistorySection {
+  title: string;
+  content: JSX.Element;
+  image?: string;
+}

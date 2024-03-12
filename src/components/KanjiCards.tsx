@@ -4,7 +4,7 @@ import { Card, Container, Row, Col, Button, Spinner, Alert } from "react-bootstr
 import ReactCardFlip from "react-card-flip";
 import { KanjiObject, KanjiAdditionalInfo } from "../interfaces/types";
 
-const KanjiCard = () => {
+const KanjiCards = () => {
   const [fetchedKanji, setFetchedKanji] = useState<KanjiObject[]>([]);
   const [additionalInfo, setAdditionalInfo] = useState<KanjiAdditionalInfo | null>(null);
   const [savedInfo, setSavedInfo] = useState<KanjiAdditionalInfo[]>([]);
@@ -186,4 +186,4 @@ const KanjiCard = () => {
   );
 };
 
-export default KanjiCard;
+export default KanjiCards;
