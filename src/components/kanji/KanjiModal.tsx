@@ -7,6 +7,11 @@ import { BookmarkPlus, BookmarkCheck } from "lucide-react";
 
 export const KanjiModal: React.FC = () => {
   const { inspectKanji, setInspectKanji, savedKanji, saveKanjiForReview, removeSavedKanji } = useKanji();
+  const [videoError, setVideoError] = React.useState(false);
+
+  React.useEffect(() => {
+    setVideoError(false);
+  }, [inspectKanji?.kanji.character]);
 
   if (!inspectKanji) return null;
 
@@ -44,22 +49,42 @@ export const KanjiModal: React.FC = () => {
         <Row className="gy-4">
           {/* Left Column: Media & Readings */}
           <Col md={6}>
-            <div className="text-center p-3 rounded-3 mb-3" style={{ background: "rgba(255,255,255,0.03)" }}>
-              {inspectKanji.kanji.video?.mp4 ? (
-                <video
-                  src={inspectKanji.kanji.video.mp4}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  style={{ width: "160px", height: "160px", objectFit: "contain" }}
-                />
+            <div className="text-center p-3 rounded-3 mb-3 d-flex flex-column align-items-center" style={{ background: "rgba(255,255,255,0.03)" }}>
+              {inspectKanji.kanji.video?.mp4 && !videoError ? (
+                <div className="kanji-animation-frame mb-3">
+                  <video
+                    key={inspectKanji.kanji.video.mp4}
+                    src={inspectKanji.kanji.video.mp4}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    onError={() => setVideoError(true)}
+                    style={{ width: "160px", height: "160px", objectFit: "contain" }}
+                  />
+                </div>
               ) : (
-                <div className="kanji-display display-1 text-white py-3">
-                  {inspectKanji.kanji.character}
+                <div className="kanji-animation-frame mb-3">
+                  <div
+                    className="d-flex flex-column align-items-center justify-content-center"
+                    style={{
+                      width: "160px",
+                      height: "160px",
+                      background: "#ffffff",
+                      borderRadius: "10px",
+                    }}>
+                    <span
+                      className="kanji-display"
+                      style={{ fontSize: "4.5rem", color: "#0f172a", lineHeight: 1 }}>
+                      {inspectKanji.kanji.character}
+                    </span>
+                    <span className="badge bg-dark text-white-50 mt-2" style={{ fontSize: "0.75rem" }}>
+                      {inspectKanji.kanji.strokes.count} strokes
+                    </span>
+                  </div>
                 </div>
               )}
-              <div className="mt-2 d-flex justify-content-center gap-2">
+              <div className="mt-1 d-flex justify-content-center gap-2">
                 <AudioButton
                   textToSpeak={inspectKanji.kanji.character}
                   label="Pronounce"

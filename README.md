@@ -11,7 +11,7 @@ Built with **React 18, TypeScript, Vite, Web Audio API, Web Speech API, and Boot
 - **Calligraphy & Stroke Drawing Canvas**: Practice writing kanji directly on an interactive HTML5 canvas with ghost guides, stroke counts, undo, and brush physics.
 - **JLPT Quiz Challenge**: Test knowledge with 4-choice timed questions on character meanings and readings, featuring streak multipliers and celebratory confetti.
 - **Review Vault**: Permanent `localStorage`-backed repository for difficult characters with animated stroke MP4 videos, search, and mastery tracking.
-- **Kanji Explorer & Dictionary**: Search over 150+ kanji characters across grades by English keyword, Romaji, or Japanese readings.
+- **Kanji Explorer & Dictionary**: Search over 260+ kanji characters across grades by English keyword, Romaji, or Japanese readings.
 - **Cultural Chronicles & History**: Comprehensive educational guides on ancient Chinese hànzì origins, On'yomi vs Kun'yomi distinctions, and memory study science.
 - **Community Feedback Board**: Persistent suggestions, bug reporting, and feedback board with upvotes and categories.
 - **Neo-Tokyo Ink Design System**: Premium dark aesthetic with Torii vermilion (`#e63946`), sakura pink, imperial gold accents, and Japanese calligraphy typography.
@@ -52,7 +52,7 @@ Built with **React 18, TypeScript, Vite, Web Audio API, Web Speech API, and Boot
 - **Search & Filter Bar**: Search saved cards by keyword, or filter by mastery status and JLPT difficulty grade.
 
 ### 🔍 Kanji Explorer & Catalog (`/dictionary`)
-- **Full Library Search**: Search through the 150+ kanji database by English keyword, Romaji pronunciation, Japanese reading, or character glyph.
+- **Full Library Search**: Search through the 260+ kanji database by English keyword, Romaji pronunciation, Japanese reading, or character glyph.
 - **Grade Filtering**: Instantly isolate characters from Grade 1 (N5 Foundations) through Grade 5 (Advanced).
 - **Detail Inspection Modal**: Click any card in the grid to open a comprehensive inspection dialog featuring stroke videos, radicals, mnemonics, and vocabulary.
 

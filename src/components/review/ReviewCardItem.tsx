@@ -11,6 +11,11 @@ interface ReviewCardItemProps {
 
 export const ReviewCardItem: React.FC<ReviewCardItemProps> = ({ item }) => {
   const { toggleMastered, removeSavedKanji, setInspectKanji } = useKanji();
+  const [videoError, setVideoError] = React.useState(false);
+
+  React.useEffect(() => {
+    setVideoError(false);
+  }, [item.kanji.character]);
 
   return (
     <div
@@ -37,15 +42,19 @@ export const ReviewCardItem: React.FC<ReviewCardItemProps> = ({ item }) => {
               {item.kanji.character}
             </h1>
 
-            {item.kanji.video?.mp4 ? (
-              <video
-                src={item.kanji.video.mp4}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{ width: "90px", height: "90px", objectFit: "contain" }}
-              />
+            {item.kanji.video?.mp4 && !videoError ? (
+              <div className="kanji-animation-frame mb-2" style={{ padding: "4px" }}>
+                <video
+                  key={item.kanji.video.mp4}
+                  src={item.kanji.video.mp4}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  onError={() => setVideoError(true)}
+                  style={{ width: "90px", height: "90px", objectFit: "contain" }}
+                />
+              </div>
             ) : (
               <div className="small text-white fw-semibold mb-2">
                 {item.kanji.strokes.count} strokes

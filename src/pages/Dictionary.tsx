@@ -40,7 +40,8 @@ export const Dictionary: React.FC = () => {
           </div>
           <h2 className="fw-bold text-white mb-2">Browse the Kanji Catalog</h2>
           <p className="text-white small mx-auto" style={{ maxWidth: "540px" }}>
-            Search over 150+ kanji characters by English meaning, Romaji, Japanese reading, or stroke count.
+            Search over 260+ kanji characters by English meaning, Romaji, Japanese reading, or
+            stroke count.
           </p>
 
           {/* Search Box */}

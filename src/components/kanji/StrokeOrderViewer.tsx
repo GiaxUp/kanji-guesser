@@ -7,6 +7,11 @@ interface StrokeOrderViewerProps {
 }
 
 export const StrokeOrderViewer: React.FC<StrokeOrderViewerProps> = ({ kanji }) => {
+  const [videoError, setVideoError] = React.useState(false);
+
+  React.useEffect(() => {
+    setVideoError(false);
+  }, [kanji.kanji.character]);
 
   return (
     <div className="glass-panel p-4 text-center">
@@ -16,36 +21,36 @@ export const StrokeOrderViewer: React.FC<StrokeOrderViewerProps> = ({ kanji }) =
       </p>
 
       {/* Video Animation Player */}
-      {kanji.kanji.video?.mp4 ? (
-        <div
-          className="mx-auto position-relative rounded-3 overflow-hidden shadow mb-3"
-          style={{
-            maxWidth: "200px",
-            aspectRatio: "1/1",
-            background: "#162032",
-            border: "1px solid rgba(255,255,255,0.1)",
-          }}>
+      {kanji.kanji.video?.mp4 && !videoError ? (
+        <div className="kanji-animation-frame mx-auto mb-3">
           <video
+            key={kanji.kanji.video.mp4}
             src={kanji.kanji.video.mp4}
             autoPlay
             loop
             muted
             playsInline
-            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+            onError={() => setVideoError(true)}
+            style={{ width: "180px", height: "180px", objectFit: "contain" }}
           />
         </div>
       ) : (
-        <div
-          className="mx-auto d-flex align-items-center justify-content-center rounded-3 mb-3"
-          style={{
-            maxWidth: "180px",
-            height: "180px",
-            background: "rgba(255,255,255,0.03)",
-            border: "1px dashed rgba(255,255,255,0.15)",
-          }}>
-          <span className="kanji-display text-white" style={{ fontSize: "5rem" }}>
-            {kanji.kanji.character}
-          </span>
+        <div className="kanji-animation-frame mx-auto mb-3">
+          <div
+            className="d-flex flex-column align-items-center justify-content-center"
+            style={{
+              width: "180px",
+              height: "180px",
+              background: "#ffffff",
+              borderRadius: "10px",
+            }}>
+            <span className="kanji-display" style={{ fontSize: "5rem", color: "#0f172a", lineHeight: 1 }}>
+              {kanji.kanji.character}
+            </span>
+            <span className="badge bg-dark text-white-50 mt-2" style={{ fontSize: "0.75rem" }}>
+              {kanji.kanji.strokes.count} strokes
+            </span>
+          </div>
         </div>
       )}
 

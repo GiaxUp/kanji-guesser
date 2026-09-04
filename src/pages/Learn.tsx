@@ -142,7 +142,7 @@ export const Learn: React.FC = () => {
               value={selectedGrade}
               onChange={(e) => setSelectedGrade(parseInt(e.target.value, 10))}
               style={{ width: "auto", borderRadius: "var(--radius-md)" }}>
-              <option value={0}>All Grades (150+ Kanji)</option>
+              <option value={0}>All Grades (260+ Kanji)</option>
               <option value={1}>Grade 1 (N5 Foundations)</option>
               <option value={2}>Grade 2 (N5/N4 Intermediate)</option>
               <option value={3}>Grade 3 (N4 Daily Life)</option>
