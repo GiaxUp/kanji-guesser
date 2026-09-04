@@ -63,25 +63,27 @@ export const KanjiCard: React.FC<KanjiCardProps> = ({
           </div>
 
           {/* Central Kanji Glyphs */}
-          <div className="my-auto py-3">
+          <div className="my-auto py-2 d-flex flex-column align-items-center justify-content-center">
             <h1
-              className="kanji-display text-white mb-2"
+              className="kanji-display text-white"
               style={{
-                fontSize: "6.5rem",
-                textShadow: "0 0 35px rgba(230, 57, 70, 0.4)",
+                fontSize: "8.8rem",
+                lineHeight: 1,
+                marginBottom: "2.25rem",
+                textShadow: "0 0 40px rgba(230, 57, 70, 0.45)",
                 transition: "transform 0.3s ease",
               }}>
               {kanji.kanji.character}
             </h1>
 
             {/* Radical & Strokes details */}
-            <div className="d-flex justify-content-center gap-2 mt-2">
+            <div className="d-flex justify-content-center gap-2 flex-wrap">
               {kanji.radical && (
-                <span className="badge-tag jade text-white fw-bold">
+                <span className="badge-tag jade text-white fw-bold py-1 px-3">
                   Radical: {kanji.radical.character || kanji.radical.name.hiragana} ({kanji.radical.meaning.english})
                 </span>
               )}
-              <span className="badge-tag default text-white fw-bold">
+              <span className="badge-tag default text-white fw-bold py-1 px-3">
                 {kanji.kanji.strokes.count} strokes
               </span>
             </div>
