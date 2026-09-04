@@ -11,8 +11,16 @@ export const Dictionary: React.FC = () => {
   const { setInspectKanji, savedKanji, saveKanjiForReview, removeSavedKanji } = useKanji();
   const [searchQuery, setSearchQuery] = useState("");
   const [gradeFilter, setGradeFilter] = useState(0);
+  const [visibleLimit, setVisibleLimit] = useState(96);
 
   const results = kanjiService.searchKanji(searchQuery, gradeFilter);
+
+  // Reset pagination when search query or grade changes
+  React.useEffect(() => {
+    setVisibleLimit(96);
+  }, [searchQuery, gradeFilter]);
+
+  const displayedResults = results.slice(0, visibleLimit);
 
   const isItemSaved = (character: string) => {
     return savedKanji.some((k) => k.kanji.character === character);
@@ -39,9 +47,8 @@ export const Dictionary: React.FC = () => {
             <span className="small text-white fw-semibold">Kanji Explorer & Dictionary</span>
           </div>
           <h2 className="fw-bold text-white mb-2">Browse the Kanji Catalog</h2>
-          <p className="text-white small mx-auto" style={{ maxWidth: "540px" }}>
-            Search over 260+ kanji characters by English meaning, Romaji, Japanese reading, or
-            stroke count.
+          <p className="text-white small mx-auto" style={{ maxWidth: "580px" }}>
+            Explore complete Joyo & Jinmeiyo Japanese characters (3,000 kanji) by English meaning, Romaji, reading, or stroke count.
           </p>
 
           {/* Search Box */}
@@ -63,12 +70,13 @@ export const Dictionary: React.FC = () => {
           {/* Grade Pill Filters */}
           <div className="d-flex justify-content-center gap-2 mt-3 flex-wrap">
             {[
-              { label: "All Grades", grade: 0 },
-              { label: "Grade 1 (N5)", grade: 1 },
-              { label: "Grade 2 (N4)", grade: 2 },
-              { label: "Grade 3 (N4)", grade: 3 },
-              { label: "Grade 4 (N3)", grade: 4 },
-              { label: "Grade 5 (N2)", grade: 5 },
+              { label: "All (3,000)", grade: 0 },
+              { label: "Grade 1 (80)", grade: 1 },
+              { label: "Grade 2 (160)", grade: 2 },
+              { label: "Grade 3 (200)", grade: 3 },
+              { label: "Grade 4 (200)", grade: 4 },
+              { label: "Grade 5 (185)", grade: 5 },
+              { label: "Grade 6+ & Names (2,174)", grade: 6 },
             ].map((p) => (
               <button
                 key={p.grade}
@@ -89,13 +97,13 @@ export const Dictionary: React.FC = () => {
 
         {/* Results Counter */}
         <div className="d-flex justify-content-between align-items-center mb-3 text-white small">
-          <span>Found <strong>{results.length}</strong> characters</span>
+          <span>Found <strong>{results.length}</strong> characters (showing {displayedResults.length})</span>
           <span className="fw-medium">Click any card to inspect strokes and examples</span>
         </div>
 
         {/* Kanji Cards Grid */}
         <Row className="g-3">
-          {results.map((item) => {
+          {displayedResults.map((item) => {
             const saved = isItemSaved(item.kanji.character);
 
             return (
@@ -160,6 +168,17 @@ export const Dictionary: React.FC = () => {
             );
           })}
         </Row>
+
+        {/* Load More Button */}
+        {results.length > visibleLimit && (
+          <div className="text-center mt-5">
+            <button
+              onClick={() => setVisibleLimit((prev) => prev + 96)}
+              className="btn btn-primary-gradient px-5 py-2 rounded-pill shadow">
+              Load More Characters ({displayedResults.length} / {results.length})
+            </button>
+          </div>
+        )}
       </Container>
     </div>
   );

@@ -34,7 +34,7 @@ export const Home: React.FC = () => {
           <Col lg={7}>
             <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style={{ background: "rgba(230, 57, 70, 0.12)", border: "1px solid rgba(230,57,70,0.3)" }}>
               <Sparkles size={16} color="var(--accent-vermilion)" />
-              <span className="small text-white fw-semibold">Discover over 260+ Japanese Kanji</span>
+              <span className="small text-white fw-semibold">Discover over 3,000 Japanese Kanji (Joyo & Jinmeiyo)</span>
             </div>
 
             <h1 className="display-4 fw-extrabold text-white mb-3" style={{ lineHeight: 1.15, fontWeight: 800 }}>

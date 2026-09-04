@@ -50,12 +50,13 @@ export const Practice: React.FC = () => {
                 setCurrentIndex(0);
               }}
               style={{ width: "auto", borderRadius: "var(--radius-md)" }}>
-              <option value={0}>All Grades</option>
-              <option value={1}>Grade 1 (Foundations)</option>
-              <option value={2}>Grade 2 (Intermediate)</option>
-              <option value={3}>Grade 3</option>
-              <option value={4}>Grade 4</option>
-              <option value={5}>Grade 5</option>
+              <option value={0}>All Grades (3,000)</option>
+              <option value={1}>Grade 1 (80)</option>
+              <option value={2}>Grade 2 (160)</option>
+              <option value={3}>Grade 3 (200)</option>
+              <option value={4}>Grade 4 (200)</option>
+              <option value={5}>Grade 5 (185)</option>
+              <option value={6}>Grade 6 & Names (2,174)</option>
             </select>
           </div>
         </div>
@@ -63,29 +64,37 @@ export const Practice: React.FC = () => {
         {/* Kanji Selector Carousel Strip */}
         <div className="glass-panel p-2 mb-4 overflow-auto">
           <div className="d-flex gap-2 align-items-center justify-content-start px-2 py-1">
-            {kanjiList.map((item, idx) => (
-              <button
-                key={item._id}
-                onClick={() => {
-                  audioService.playClickSound();
-                  setCurrentIndex(idx);
-                }}
-                className={`btn d-flex flex-column align-items-center justify-content-center p-2 rounded-3 transition-all ${
-                  idx === currentIndex
-                    ? "btn-danger shadow"
-                    : "btn-outline-secondary text-white"
-                }`}
-                style={{
-                  minWidth: "60px",
-                  height: "65px",
-                  border: idx === currentIndex ? "none" : "1px solid rgba(255,255,255,0.1)",
-                }}>
-                <span className="kanji-display fs-4 fw-bold">{item.kanji.character}</span>
-                <span style={{ fontSize: "0.65rem", opacity: 0.8 }}>
-                  {item.kanji.strokes.count} st.
-                </span>
-              </button>
-            ))}
+            {(() => {
+              const windowSize = 50;
+              const startIdx = Math.max(0, Math.min(currentIndex - 15, kanjiList.length - windowSize));
+              const displayList = kanjiList.length > windowSize
+                ? kanjiList.slice(startIdx, startIdx + windowSize).map((item, relIdx) => ({ item, actualIndex: startIdx + relIdx }))
+                : kanjiList.map((item, actualIndex) => ({ item, actualIndex }));
+
+              return displayList.map(({ item, actualIndex }) => (
+                <button
+                  key={item._id}
+                  onClick={() => {
+                    audioService.playClickSound();
+                    setCurrentIndex(actualIndex);
+                  }}
+                  className={`btn d-flex flex-column align-items-center justify-content-center p-2 rounded-3 transition-all ${
+                    actualIndex === currentIndex
+                      ? "btn-danger shadow"
+                      : "btn-outline-secondary text-white"
+                  }`}
+                  style={{
+                    minWidth: "60px",
+                    height: "65px",
+                    border: actualIndex === currentIndex ? "none" : "1px solid rgba(255,255,255,0.1)",
+                  }}>
+                  <span className="kanji-display fs-4 fw-bold">{item.kanji.character}</span>
+                  <span style={{ fontSize: "0.65rem", opacity: 0.8 }}>
+                    {item.kanji.strokes.count} st.
+                  </span>
+                </button>
+              ));
+            })()}
           </div>
         </div>
 

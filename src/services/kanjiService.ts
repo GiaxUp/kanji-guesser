@@ -10,7 +10,9 @@ class KanjiService {
     if (!grade || grade === 0) {
       return [...this.localDataset];
     }
-    const filtered = this.localDataset.filter((k) => k.grade === grade);
+    const filtered = this.localDataset.filter((k) =>
+      grade >= 6 ? k.grade >= 6 : k.grade === grade
+    );
     return filtered.length > 0 ? filtered : this.localDataset;
   }
 
