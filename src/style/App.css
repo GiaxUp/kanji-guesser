@@ -1,29 +1,54 @@
-/* General */
-body {
-  background-color: rgb(223, 209, 163);
+@import "../styles/index.css";
+
+/* Bridge styles for Bootstrap integration */
+.navbar-dark {
+  background: rgba(10, 14, 23, 0.85) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Review section */
-.big-container {
-  height: 100%;
+.accordion-item {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
 }
 
-.small-container {
-  border: 1px solid rgba(176, 176, 176, 0.5);
-  border-radius: 10px;
-  background-color: white;
-  padding-top: 1em;
+.accordion-button {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  font-weight: 600;
+  box-shadow: none !important;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 15px;
+.accordion-button:not(.collapsed) {
+  color: var(--accent-gold) !important;
+  background-color: var(--bg-surface-elevated) !important;
 }
 
-::-webkit-scrollbar-track {
-  background-color: rgb(153, 144, 112);
+.accordion-button::after {
+  filter: invert(1);
 }
 
-::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 6px rgb(247, 238, 211);
+.accordion-body {
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.modal-content {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
+}
+
+.modal-header, .modal-footer {
+  border-color: var(--border-subtle) !important;
+}
+
+.btn-close {
+  filter: invert(1);
 }
