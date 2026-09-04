@@ -47,7 +47,7 @@ export const ReviewCardItem: React.FC<ReviewCardItemProps> = ({ item }) => {
                 style={{ width: "90px", height: "90px", objectFit: "contain" }}
               />
             ) : (
-              <div className="small text-muted mb-2">
+              <div className="small text-white fw-semibold mb-2">
                 {item.kanji.strokes.count} strokes
               </div>
             )}
@@ -72,44 +72,44 @@ export const ReviewCardItem: React.FC<ReviewCardItemProps> = ({ item }) => {
           </div>
 
           <div className="d-flex flex-column gap-2 mb-3">
-            <div className="d-flex justify-content-between align-items-center p-2 rounded bg-dark bg-opacity-50 border border-secondary border-opacity-25">
+            <div className="d-flex justify-content-between align-items-center p-2 rounded bg-dark bg-opacity-75 border border-secondary border-opacity-25">
               <div>
-                <span className="small text-muted d-block">Kun'yomi (訓読み)</span>
-                <span className="text-white fw-medium">{item.kunyomi_ja}</span>
+                <span className="small text-white fw-bold d-block">Kun'yomi (訓読み)</span>
+                <span className="text-white fw-bold">{item.kunyomi_ja}</span>
               </div>
               <AudioButton textToSpeak={item.kunyomi_ja} size="sm" variant="gold" />
             </div>
 
-            <div className="d-flex justify-content-between align-items-center p-2 rounded bg-dark bg-opacity-50 border border-secondary border-opacity-25">
+            <div className="d-flex justify-content-between align-items-center p-2 rounded bg-dark bg-opacity-75 border border-secondary border-opacity-25">
               <div>
-                <span className="small text-muted d-block">On'yomi (音読み)</span>
-                <span className="text-white fw-medium">{item.onyomi_ja}</span>
+                <span className="small text-white fw-bold d-block">On'yomi (音読み)</span>
+                <span className="text-white fw-bold">{item.onyomi_ja}</span>
               </div>
               <AudioButton textToSpeak={item.onyomi_ja} size="sm" variant="vermilion" />
             </div>
           </div>
 
           {item.radical && (
-            <div className="small text-secondary">
-              Radical: <strong className="text-white">{item.radical.character || item.radical.name.hiragana}</strong> (
-              {item.radical.meaning.english})
+            <div className="small text-white">
+              Radical: <strong className="text-warning">{item.radical.character || item.radical.name.hiragana}</strong> (
+              <span className="text-white fw-medium">{item.radical.meaning.english}</span>)
             </div>
           )}
         </div>
 
         {/* Examples */}
         <div className="col-12 col-md-5">
-          <h6 className="small text-uppercase fw-bold text-secondary mb-2">
+          <h6 className="small text-uppercase fw-bold text-white mb-2">
             Usage Examples & Audio
           </h6>
           <div className="d-flex flex-column gap-2">
             {item.examples.slice(0, 3).map((ex, idx) => (
               <div
                 key={idx}
-                className="p-2 rounded bg-dark bg-opacity-50 border border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                className="p-2 rounded bg-dark bg-opacity-75 border border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
                 <div>
-                  <div className="text-white fw-semibold small">{ex.japanese}</div>
-                  <div className="text-muted" style={{ fontSize: "0.78rem" }}>
+                  <div className="text-white fw-bold small">{ex.japanese}</div>
+                  <div className="text-white fw-medium" style={{ fontSize: "0.85rem" }}>
                     {ex.meaning.english}
                   </div>
                 </div>

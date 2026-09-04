@@ -13,9 +13,9 @@
   --accent-jade: #10b981;
   --accent-indigo: #6366f1;
 
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  --text-primary: #ffffff;
+  --text-secondary: #f1f5f9;
+  --text-muted: #e2e8f0;
   --text-gold: #fbbf24;
 
   --border-subtle: rgba(255, 255, 255, 0.08);
@@ -54,6 +54,23 @@ body {
     radial-gradient(circle at 90% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
     radial-gradient(circle at 10% 80%, rgba(245, 158, 11, 0.06) 0%, transparent 50%);
   background-attachment: fixed;
+}
+
+/* High-contrast readability overrides */
+.text-muted,
+small.text-muted,
+.small.text-muted {
+  color: #f1f5f9 !important;
+  opacity: 0.95;
+}
+
+.text-secondary {
+  color: #ffffff !important;
+  opacity: 0.95;
+}
+
+p, span, li, label, div {
+  color: inherit;
 }
 
 /* Japanese Kanji Typography */
@@ -222,29 +239,29 @@ body {
   gap: 0.35rem;
   padding: 0.25rem 0.65rem;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
 .badge-tag.vermilion {
-  background: rgba(230, 57, 70, 0.12);
-  border-color: rgba(230, 57, 70, 0.3);
-  color: #ff8b94;
+  background: rgba(230, 57, 70, 0.28);
+  border-color: rgba(230, 57, 70, 0.6);
+  color: #ffb3b8;
 }
 
 .badge-tag.gold {
-  background: rgba(245, 158, 11, 0.12);
-  border-color: rgba(245, 158, 11, 0.3);
-  color: #fcd34d;
+  background: rgba(245, 158, 11, 0.28);
+  border-color: rgba(245, 158, 11, 0.6);
+  color: #fef08a;
 }
 
 .badge-tag.jade {
-  background: rgba(16, 185, 129, 0.12);
-  border-color: rgba(16, 185, 129, 0.3);
-  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.28);
+  border-color: rgba(16, 185, 129, 0.6);
+  color: #a7f3d0;
 }
 
 /* Interactive Canvas Styles */

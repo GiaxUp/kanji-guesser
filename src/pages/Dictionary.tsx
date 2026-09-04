@@ -39,7 +39,7 @@ export const Dictionary: React.FC = () => {
             <span className="small text-white fw-semibold">Kanji Explorer & Dictionary</span>
           </div>
           <h2 className="fw-bold text-white mb-2">Browse the Kanji Catalog</h2>
-          <p className="text-secondary small mx-auto" style={{ maxWidth: "540px" }}>
+          <p className="text-white small mx-auto" style={{ maxWidth: "540px" }}>
             Search over 150+ kanji characters by English meaning, Romaji, Japanese reading, or stroke count.
           </p>
 
@@ -78,7 +78,7 @@ export const Dictionary: React.FC = () => {
                 className={`btn btn-sm rounded-pill px-3 ${
                   gradeFilter === p.grade
                     ? "btn-danger fw-bold shadow"
-                    : "btn-secondary-dark"
+                    : "btn-secondary-dark text-white"
                 }`}>
                 {p.label}
               </button>
@@ -87,9 +87,9 @@ export const Dictionary: React.FC = () => {
         </div>
 
         {/* Results Counter */}
-        <div className="d-flex justify-content-between align-items-center mb-3 text-secondary small">
+        <div className="d-flex justify-content-between align-items-center mb-3 text-white small">
           <span>Found <strong>{results.length}</strong> characters</span>
-          <span>Click any card to inspect strokes and examples</span>
+          <span className="fw-medium">Click any card to inspect strokes and examples</span>
         </div>
 
         {/* Kanji Cards Grid */}
@@ -117,7 +117,7 @@ export const Dictionary: React.FC = () => {
                     </span>
                     <button
                       onClick={(e) => handleToggleSave(e, item)}
-                      className="btn btn-sm p-0 text-secondary hover-text-white"
+                      className="btn btn-sm p-0 text-white hover-text-white"
                       title={saved ? "Saved in Vault" : "Save for review"}>
                       {saved ? (
                         <BookmarkCheck size={16} color="var(--accent-gold)" />
@@ -138,10 +138,10 @@ export const Dictionary: React.FC = () => {
 
                   {/* Meaning & Strokes */}
                   <div>
-                    <div className="fw-semibold text-white small text-truncate" title={item.kanji.meaning.english}>
+                    <div className="fw-bold text-white small text-truncate" title={item.kanji.meaning.english}>
                       {item.kanji.meaning.english}
                     </div>
-                    <div className="text-muted" style={{ fontSize: "0.72rem" }}>
+                    <div className="text-white fw-medium" style={{ fontSize: "0.78rem" }}>
                       {item.kanji.strokes.count} strokes
                     </div>
                   </div>

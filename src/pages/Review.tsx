@@ -49,7 +49,7 @@ export const Review: React.FC = () => {
               <span className="small text-white fw-semibold">Personal Memory Vault</span>
             </div>
             <h2 className="fw-bold text-white mb-1">Review & Master Saved Kanji</h2>
-            <p className="text-secondary small mb-0">
+            <p className="text-white small mb-0">
               Study saved characters with animated stroke videos, audio pronunciation, and vocabulary
             </p>
           </div>
@@ -57,7 +57,7 @@ export const Review: React.FC = () => {
           {savedKanji.length > 0 && (
             <div className="d-flex align-items-center gap-3 glass-panel px-4 py-2">
               <div>
-                <div className="small text-muted">Mastery Rate</div>
+                <div className="small text-white fw-bold">Mastery Rate</div>
                 <div className="text-white fw-bold fs-5">
                   {masteredCount} / {savedKanji.length}{" "}
                   <span className="text-success small fw-normal">({progressPercent}%)</span>

@@ -69,12 +69,12 @@ export const KanjiModal: React.FC = () => {
             </div>
 
             {/* Readings */}
-            <div className="p-3 rounded-3 mb-3" style={{ background: "rgba(255,255,255,0.03)" }}>
-              <h6 className="text-uppercase small fw-bold text-secondary mb-2">Readings</h6>
+            <div className="p-3 rounded-3 mb-3" style={{ background: "rgba(255,255,255,0.06)" }}>
+              <h6 className="text-uppercase small fw-bold text-white mb-2">Readings</h6>
               <div className="d-flex justify-content-between align-items-center mb-2">
                 <div>
                   <span className="badge-tag vermilion me-2">訓 Kun'yomi</span>
-                  <span className="fw-medium">{inspectKanji.kunyomi_ja}</span>
+                  <span className="fw-bold text-white">{inspectKanji.kunyomi_ja}</span>
                 </div>
                 <AudioButton textToSpeak={inspectKanji.kunyomi_ja} size="sm" variant="vermilion" />
               </div>
@@ -82,7 +82,7 @@ export const KanjiModal: React.FC = () => {
               <div className="d-flex justify-content-between align-items-center">
                 <div>
                   <span className="badge-tag gold me-2">音 On'yomi</span>
-                  <span className="fw-medium">{inspectKanji.onyomi_ja}</span>
+                  <span className="fw-bold text-white">{inspectKanji.onyomi_ja}</span>
                 </div>
                 <AudioButton textToSpeak={inspectKanji.onyomi_ja} size="sm" variant="gold" />
               </div>
@@ -90,15 +90,15 @@ export const KanjiModal: React.FC = () => {
 
             {/* Radical info */}
             {inspectKanji.radical && (
-              <div className="p-3 rounded-3" style={{ background: "rgba(255,255,255,0.03)" }}>
-                <h6 className="text-uppercase small fw-bold text-secondary mb-1">Radical</h6>
+              <div className="p-3 rounded-3" style={{ background: "rgba(255,255,255,0.06)" }}>
+                <h6 className="text-uppercase small fw-bold text-white mb-1">Radical</h6>
                 <div className="d-flex align-items-center gap-2">
                   <span className="kanji-display fs-3 text-warning">
                     {inspectKanji.radical.character || inspectKanji.radical.name.hiragana}
                   </span>
                   <div>
-                    <div className="fw-medium">{inspectKanji.radical.name.hiragana}</div>
-                    <div className="small text-muted">{inspectKanji.radical.meaning.english}</div>
+                    <div className="fw-bold text-white">{inspectKanji.radical.name.hiragana}</div>
+                    <div className="small text-white fw-medium">{inspectKanji.radical.meaning.english}</div>
                   </div>
                 </div>
               </div>
@@ -107,17 +107,17 @@ export const KanjiModal: React.FC = () => {
 
           {/* Right Column: Examples & Stroke Drawing */}
           <Col md={6}>
-            <div className="p-3 rounded-3 mb-3" style={{ background: "rgba(255,255,255,0.03)" }}>
-              <h6 className="text-uppercase small fw-bold text-secondary mb-2">Vocabulary Examples</h6>
+            <div className="p-3 rounded-3 mb-3" style={{ background: "rgba(255,255,255,0.06)" }}>
+              <h6 className="text-uppercase small fw-bold text-white mb-2">Vocabulary Examples</h6>
               <div className="d-flex flex-column gap-2">
                 {inspectKanji.examples.map((ex, i) => (
                   <div
                     key={i}
                     className="p-2 rounded d-flex justify-content-between align-items-center"
-                    style={{ background: "rgba(0,0,0,0.2)" }}>
+                    style={{ background: "rgba(0,0,0,0.4)" }}>
                     <div>
-                      <div className="fw-bold">{ex.japanese}</div>
-                      <div className="small text-muted">{ex.meaning.english}</div>
+                      <div className="fw-bold text-white">{ex.japanese}</div>
+                      <div className="small text-white fw-medium">{ex.meaning.english}</div>
                     </div>
                     <AudioButton
                       audioUrl={ex.audio?.mp3}
@@ -131,9 +131,9 @@ export const KanjiModal: React.FC = () => {
             </div>
 
             {inspectKanji.mnemonic && (
-              <div className="p-3 rounded-3" style={{ background: "rgba(230, 57, 70, 0.08)", border: "1px solid rgba(230,57,70,0.2)" }}>
-                <h6 className="text-uppercase small fw-bold text-danger mb-1">Mnemonic Memory Aid</h6>
-                <p className="small mb-0 text-secondary">{inspectKanji.mnemonic}</p>
+              <div className="p-3 rounded-3" style={{ background: "rgba(230, 57, 70, 0.12)", border: "1px solid rgba(230,57,70,0.3)" }}>
+                <h6 className="text-uppercase small fw-bold text-white mb-1">Mnemonic Memory Aid</h6>
+                <p className="small mb-0 text-white">{inspectKanji.mnemonic}</p>
               </div>
             )}
           </Col>

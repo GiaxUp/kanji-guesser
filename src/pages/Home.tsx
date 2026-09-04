@@ -61,15 +61,15 @@ export const Home: React.FC = () => {
                 <div className="d-flex align-items-center gap-1 text-warning fw-bold fs-4">
                   <Flame size={22} color="var(--accent-gold)" /> {streak}
                 </div>
-                <div className="small text-muted">Current Streak</div>
+                <div className="small text-white fw-bold">Current Streak</div>
               </div>
               <div className="border-start border-secondary border-opacity-25 ps-4">
                 <div className="text-white fw-bold fs-4">{savedKanji.length}</div>
-                <div className="small text-muted">In Review Vault</div>
+                <div className="small text-white fw-bold">In Review Vault</div>
               </div>
               <div className="border-start border-secondary border-opacity-25 ps-4">
                 <div className="text-success fw-bold fs-4">{masteredCount}</div>
-                <div className="small text-muted">Mastered</div>
+                <div className="small text-white fw-bold">Mastered</div>
               </div>
             </div>
           </Col>
@@ -92,20 +92,20 @@ export const Home: React.FC = () => {
                   {featuredKanji.kanji.character}
                 </h1>
                 <h4 className="fw-bold text-white mb-1">{featuredKanji.kanji.meaning.english}</h4>
-                <div className="small text-muted">
-                  {featuredKanji.kanji.strokes.count} strokes • Radical: {featuredKanji.radical?.character || featuredKanji.radical?.name.hiragana}
+                <div className="text-white fw-semibold mt-1" style={{ fontSize: "0.9rem" }}>
+                  <span className="text-warning fw-bold">{featuredKanji.kanji.strokes.count} strokes</span> • Radical: <span className="text-white fw-bold">{featuredKanji.radical?.character || featuredKanji.radical?.name.hiragana}</span> ({featuredKanji.radical?.meaning.english})
                 </div>
               </div>
 
-              <div className="p-3 rounded-3 bg-dark bg-opacity-50 text-start mb-3">
-                <div className="d-flex justify-content-between align-items-center mb-1">
-                  <span className="small text-muted">訓 Kun'yomi:</span>
-                  <span className="fw-medium text-white">{featuredKanji.kunyomi_ja}</span>
+              <div className="p-3 rounded-3 bg-dark bg-opacity-75 text-start mb-3 border border-secondary border-opacity-25">
+                <div className="d-flex justify-content-between align-items-center mb-2">
+                  <span className="text-white fw-bold small">訓 Kun'yomi:</span>
+                  <span className="fw-bold text-white fs-6">{featuredKanji.kunyomi_ja}</span>
                   <AudioButton textToSpeak={featuredKanji.kunyomi_ja} size="sm" variant="gold" />
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
-                  <span className="small text-muted">音 On'yomi:</span>
-                  <span className="fw-medium text-white">{featuredKanji.onyomi_ja}</span>
+                  <span className="text-white fw-bold small">音 On'yomi:</span>
+                  <span className="fw-bold text-white fs-6">{featuredKanji.onyomi_ja}</span>
                   <AudioButton textToSpeak={featuredKanji.onyomi_ja} size="sm" variant="vermilion" />
                 </div>
               </div>
@@ -136,7 +136,7 @@ export const Home: React.FC = () => {
                       <BookOpen size={28} />
                     </div>
                     <h4 className="fw-bold text-white mb-2">3D Guessing Cards</h4>
-                    <p className="text-secondary small mb-0">
+                    <p className="text-white small mb-0" style={{ opacity: 0.9 }}>
                       Challenge your recall with interactive flip cards, stroke counts, radical breakdowns, and native audio.
                     </p>
                   </div>
@@ -158,7 +158,7 @@ export const Home: React.FC = () => {
                       <PenTool size={28} />
                     </div>
                     <h4 className="fw-bold text-white mb-2">Calligraphy Canvas</h4>
-                    <p className="text-secondary small mb-0">
+                    <p className="text-white small mb-0" style={{ opacity: 0.9 }}>
                       Practice writing kanji directly with your mouse or stylus! Trace ghost guides and track stroke accuracy.
                     </p>
                   </div>
@@ -180,7 +180,7 @@ export const Home: React.FC = () => {
                       <Trophy size={28} />
                     </div>
                     <h4 className="fw-bold text-white mb-2">Multiple Choice Quiz</h4>
-                    <p className="text-secondary small mb-0">
+                    <p className="text-white small mb-0" style={{ opacity: 0.9 }}>
                       Rapid 4-choice questions testing meanings and readings with streak multipliers and celebratory milestones.
                     </p>
                   </div>
@@ -202,7 +202,7 @@ export const Home: React.FC = () => {
                       <BookmarkCheck size={28} />
                     </div>
                     <h4 className="fw-bold text-white mb-2">Review Vault</h4>
-                    <p className="text-secondary small mb-0">
+                    <p className="text-white small mb-0" style={{ opacity: 0.9 }}>
                       Save difficult kanji to study later with animated stroke videos, audio examples, and mastery status.
                     </p>
                   </div>
@@ -224,7 +224,7 @@ export const Home: React.FC = () => {
                       <Search size={28} />
                     </div>
                     <h4 className="fw-bold text-white mb-2">Kanji Explorer</h4>
-                    <p className="text-secondary small mb-0">
+                    <p className="text-white small mb-0" style={{ opacity: 0.9 }}>
                       Browse all characters by Grade or JLPT level, search by English or Japanese keywords, and inspect details.
                     </p>
                   </div>
@@ -246,7 +246,7 @@ export const Home: React.FC = () => {
                       <HistoryIcon size={28} />
                     </div>
                     <h4 className="fw-bold text-white mb-2">History & Feedback</h4>
-                    <p className="text-secondary small mb-0">
+                    <p className="text-white small mb-0" style={{ opacity: 0.9 }}>
                       Discover the origins of kanji from Chinese hànzì, On'yomi vs Kun'yomi, and share your ideas on our board.
                     </p>
                   </div>

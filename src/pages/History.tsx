@@ -26,7 +26,9 @@ export const History: React.FC = () => {
             <article key={section.id} className="glass-panel p-4 p-md-5">
               <div className="d-flex justify-content-between align-items-center mb-2">
                 <span className="badge-tag gold">{section.era}</span>
-                <span className="small text-muted">Part {idx + 1} of {HISTORY_DATA.length}</span>
+                <span className="small fw-bold text-white px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.25)" }}>
+                  Part {idx + 1} of {HISTORY_DATA.length}
+                </span>
               </div>
 
               <h2 className="fw-bold text-white mb-2" style={{ fontSize: "1.75rem" }}>
@@ -55,9 +57,9 @@ export const History: React.FC = () => {
               )}
 
               {/* Article Content */}
-              <div className="text-secondary" style={{ fontSize: "1.05rem", lineHeight: 1.8 }}>
+              <div className="text-white" style={{ fontSize: "1.05rem", lineHeight: 1.8 }}>
                 {section.content.split("\n\n").map((para, pIdx) => (
-                  <p key={pIdx} className="mb-3">
+                  <p key={pIdx} className="mb-3 text-white">
                     {para}
                   </p>
                 ))}
@@ -65,15 +67,15 @@ export const History: React.FC = () => {
 
               {/* Bullet Key Takeaways */}
               {section.bullets && section.bullets.length > 0 && (
-                <div className="p-3 rounded-3 mt-4" style={{ background: "rgba(255, 255, 255, 0.03)", borderLeft: "3px solid var(--accent-vermilion)" }}>
+                <div className="p-3 rounded-3 mt-4" style={{ background: "rgba(255, 255, 255, 0.05)", borderLeft: "3px solid var(--accent-vermilion)" }}>
                   <h6 className="text-uppercase small fw-bold text-white mb-2 d-flex align-items-center gap-1">
                     <Sparkles size={14} color="var(--accent-vermilion)" /> Key Takeaways
                   </h6>
                   <ul className="list-unstyled mb-0 d-flex flex-column gap-2">
                     {section.bullets.map((bullet, bIdx) => (
-                      <li key={bIdx} className="small text-secondary d-flex align-items-start gap-2">
+                      <li key={bIdx} className="small text-white d-flex align-items-start gap-2">
                         <CheckCircle size={15} color="var(--accent-jade)" className="mt-1 flex-shrink-0" />
-                        <span>{bullet}</span>
+                        <span className="text-white">{bullet}</span>
                       </li>
                     ))}
                   </ul>

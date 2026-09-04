@@ -100,7 +100,7 @@ export const FeedbackBoard: React.FC = () => {
         <MessageSquare size={24} color="var(--accent-vermilion)" />
         <h3 className="fw-bold text-white mb-0">Community Feedback & Ideas</h3>
       </div>
-      <p className="text-secondary mb-4">
+      <p className="text-white mb-4">
         Tell me what you think about this web app! Feel free to leave feedback, feature suggestions, or study tips.
       </p>
 
@@ -113,7 +113,7 @@ export const FeedbackBoard: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <div className="row g-3 mb-3">
             <div className="col-12 col-md-6">
-              <label className="form-label small text-secondary">Your Name or Handle (optional)</label>
+              <label className="form-label small text-white fw-bold">Your Name or Handle (optional)</label>
               <input
                 type="text"
                 className="form-control bg-dark text-white border-secondary border-opacity-25"
@@ -124,7 +124,7 @@ export const FeedbackBoard: React.FC = () => {
               />
             </div>
             <div className="col-12 col-md-6">
-              <label className="form-label small text-secondary">Category</label>
+              <label className="form-label small text-white fw-bold">Category</label>
               <select
                 className="form-select bg-dark text-white border-secondary border-opacity-25"
                 value={category}
@@ -138,7 +138,7 @@ export const FeedbackBoard: React.FC = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label small text-secondary">Comment</label>
+            <label className="form-label small text-white fw-bold">Comment</label>
             <textarea
               className="form-control bg-dark text-white border-secondary border-opacity-25"
               rows={3}
@@ -218,7 +218,7 @@ export const FeedbackBoard: React.FC = () => {
                 </div>
                 <div>
                   <div className="fw-bold text-white small">{c.author}</div>
-                  <div className="text-muted" style={{ fontSize: "0.75rem" }}>
+                  <div className="text-white fw-medium" style={{ fontSize: "0.8rem", opacity: 0.9 }}>
                     {c.createdAt}
                   </div>
                 </div>
@@ -245,7 +245,7 @@ export const FeedbackBoard: React.FC = () => {
               </div>
             </div>
 
-            <p className="text-secondary small mb-0 ps-1" style={{ whiteSpace: "pre-line" }}>
+            <p className="text-white small mb-0 ps-1" style={{ whiteSpace: "pre-line" }}>
               {c.text}
             </p>
           </div>
